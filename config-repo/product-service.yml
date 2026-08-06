@@ -16,5 +16,5 @@ spring:
 
 eureka:
   client:
-    server-url:
+    service-url:
       defaultZone: http://locahost:8761/eureka
