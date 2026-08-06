@@ -9,4 +9,12 @@ spring:
     config:
       server:
         git:
-          uri: 
+          uri: https://github.com/AkashGuptaNitrr/E-Commerce
+          searchPaths: config-repo
+#          or
+#          uri: https://github.com/AkashGuptaNitrr/E-Commerce/config-repo
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
