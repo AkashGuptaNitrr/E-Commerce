@@ -9,10 +9,10 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/AkashGuptaNitrr/E-Commerce
-          searchPaths: config-repo
+#          uri: https://github.com/AkashGuptaNitrr/E-Commerce
+#          searchPaths: config-repo
 #          or
-#          uri: https://github.com/AkashGuptaNitrr/E-Commerce/config-repo
+          uri: https://github.com/AkashGuptaNitrr/E-Commerce/config-repo
 
 eureka:
   client:
