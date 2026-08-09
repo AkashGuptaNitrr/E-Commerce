@@ -41,11 +41,12 @@ steps:
 
   # 3. Deploy Config Server to AKS
   - task: Kubernetes@1
+    displayName: Deploy Config Server to AKS
     inputs:
       connectionType: 'Azure Resource Manager'
-      azureSubscription: $(azureSubscriptionServiceConnection)
-      azureResourceGroup: $(resourceGroup)
-      kubernetesCluster: $(aksCluster)
+      azureSubscription: azure-subscription-connection
+      azureResourceGroup: ecommerce-rg
+      kubernetesCluster: ecommerce-aks
       namespace: 'default'
       command: apply
       useConfigurationFile: true
@@ -63,11 +64,12 @@ steps:
 
   # 5. Deploy Product Service to AKS
   - task: Kubernetes@1
+    displayName: Deploy Product Service to AKS
     inputs:
       connectionType: 'Azure Resource Manager'
-      azureSubscription: $(azureSubscriptionServiceConnection)
-      azureResourceGroup: $(resourceGroup)
-      kubernetesCluster: $(aksCluster)
+      azureSubscription: azure-subscription-connection
+      azureResourceGroup: ecommerce-rg
+      kubernetesCluster: ecommerce-aks
       namespace: 'default'
       command: apply
       useConfigurationFile: true
