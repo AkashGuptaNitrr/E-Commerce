@@ -14,10 +14,10 @@ public class ProductService {
 
     public ProductResponse addProduct(Product product) {
         ProductResponse productResponse = new ProductResponse();
-        productResponse.setId(product.getId());
-        productResponse.setName(product.getName());
-        productResponse.setPrice(product.getPrice());
-        Product saved = productRepo.save(mapToResponse(productResponse));
+        Product saved = productRepo.save(product);
+        productResponse.setId(saved.getId());
+        productResponse.setName(saved.getName());
+        productResponse.setPrice(saved.getPrice());
         return productResponse;
     }
 

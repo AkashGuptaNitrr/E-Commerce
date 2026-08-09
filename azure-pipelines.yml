@@ -16,6 +16,14 @@ steps:
 #    inputs:
 #      versionSpec: '17'
 #      architecture: 'x64'
+  - task: KubernetesManifest@0
+    inputs:
+      action: deploy
+      manifests: |
+        k8s/product-service-deployment.yml
+      containers: |
+        ecommerceacr.azurecr.io/product-service:$(Build.BuildId)
+
 
   - task: Maven@3
     displayName: Build Config Server
