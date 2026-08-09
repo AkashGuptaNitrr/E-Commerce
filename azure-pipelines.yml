@@ -1,17 +1,46 @@
 trigger:
-  - main
+  - main   # Runs pipeline on commits to main branch
 
 pool:
   vmImage: 'ubuntu-latest'
 
+variables:
+  acrName: ecommerceacr7   # Replace with your ACR name
+  dockerRegistryServiceConnection: 'acr-service-connection'
+  azureSubscriptionServiceConnection: 'azure-subscription-connection'
+  resourceGroup: 'ecommerce-rg'
+  aksCluster: 'ecommerce-aks'
+
 steps:
-  # Build all microservices
+  # 1. Build all microservices with Maven
   - task: Maven@3
     inputs:
       mavenPomFile: '**/pom.xml'
       goals: 'clean install'
 
-  # Build & Push Product Service
+  # 2. Build & Push Config Server Docker Image
+  - task: Docker@2
+    inputs:
+      command: buildAndPush
+      repository: config-server
+      dockerfile: Backend/config-server/Dockerfile
+      containerRegistry: $(dockerRegistryServiceConnection)
+      tags: |
+        $(Build.BuildId)
+
+  # 3. Deploy Config Server to AKS
+  - task: Kubernetes@1
+    inputs:
+      connectionType: 'Azure Resource Manager'
+      azureSubscription: $(azureSubscriptionServiceConnection)
+      azureResourceGroup: $(resourceGroup)
+      kubernetesCluster: $(aksCluster)
+      namespace: 'default'
+      command: apply
+      useConfigurationFile: true
+      configuration: 'k8s/config-server-deployment.yaml'
+
+  # 4. Build & Push Product Service Docker Image
   - task: Docker@2
     inputs:
       command: buildAndPush
@@ -21,13 +50,13 @@ steps:
       tags: |
         $(Build.BuildId)
 
-  # Deploy Product Service to AKS
+  # 5. Deploy Product Service to AKS
   - task: Kubernetes@1
     inputs:
       connectionType: 'Azure Resource Manager'
-      azureSubscription: '$(azureSubscriptionServiceConnection)'
-      azureResourceGroup: 'your-resource-group'
-      kubernetesCluster: 'your-aks-cluster'
+      azureSubscription: $(azureSubscriptionServiceConnection)
+      azureResourceGroup: $(resourceGroup)
+      kubernetesCluster: $(aksCluster)
       namespace: 'default'
       command: apply
       useConfigurationFile: true
