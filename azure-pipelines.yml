@@ -19,6 +19,7 @@ steps:
   - task: KubernetesManifest@0
     inputs:
       action: deploy
+      kubernetesServiceConnection: ecommerce-aks-connection
       manifests: |
         k8s/product-service-deployment.yml
       containers: |
