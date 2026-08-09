@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: config-server
-          image: ecommerceacr.azurecr.io/config-server:$(Build.BuildId)
+          image: ecommerceacr.azurecr.io/config-server:latest
           ports:
             - containerPort: 8888
 ---
