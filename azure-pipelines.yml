@@ -17,7 +17,6 @@ steps:
 #      versionSpec: '17'
 #      architecture: 'x64'
 
-
   - task: Maven@3
     displayName: Build Config Server
     inputs:
