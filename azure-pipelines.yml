@@ -50,7 +50,7 @@ steps:
       namespace: 'default'
       command: apply
       useConfigurationFile: true
-      configuration: 'k8s/config-server-deployment.yaml'
+      configuration: 'k8s/config-server-deployment.yml'
 
   # 4. Build & Push Product Service Docker Image
   - task: Docker@2
@@ -73,4 +73,4 @@ steps:
       namespace: 'default'
       command: apply
       useConfigurationFile: true
-      configuration: 'k8s/product-service-deployment.yaml'
+      configuration: 'k8s/product-service-deployment.yml'
