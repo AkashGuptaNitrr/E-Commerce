@@ -44,7 +44,7 @@ steps:
     displayName: Deploy Config Server to AKS
     inputs:
       connectionType: 'Azure Resource Manager'
-      azureSubscription: azure-subscription-connection
+      azureSubscriptionEndpoint: azure-subscription-connection
       azureResourceGroup: ecommerce-rg
       kubernetesCluster: ecommerce-aks
       namespace: 'default'
@@ -67,7 +67,7 @@ steps:
     displayName: Deploy Product Service to AKS
     inputs:
       connectionType: 'Azure Resource Manager'
-      azureSubscription: azure-subscription-connection
+      azureSubscriptionEndpoint: azure-subscription-connection
       azureResourceGroup: ecommerce-rg
       kubernetesCluster: ecommerce-aks
       namespace: 'default'
