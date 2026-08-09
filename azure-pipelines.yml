@@ -12,10 +12,16 @@ variables:
   aksCluster: 'ecommerce-aks'
 
 steps:
-  # 1. Build all microservices with Maven
   - task: Maven@3
+    displayName: Build Config Server
     inputs:
-      mavenPomFile: '**/pom.xml'
+      mavenPomFile: 'config-server/pom.xml'
+      goals: 'clean install'
+
+  - task: Maven@3
+    displayName: Build Product Service
+    inputs:
+      mavenPomFile: 'product-service/pom.xml'
       goals: 'clean install'
 
   # 2. Build & Push Config Server Docker Image
