@@ -15,13 +15,13 @@ steps:
   - task: Maven@3
     displayName: Build Config Server
     inputs:
-      mavenPomFile: 'config-server/pom.xml'
+      mavenPomFile: 'Backend/config-server/pom.xml'
       goals: 'clean install'
 
   - task: Maven@3
     displayName: Build Product Service
     inputs:
-      mavenPomFile: 'product-service/pom.xml'
+      mavenPomFile: 'Backend/product-service/pom.xml'
       goals: 'clean install'
 
   # 2. Build & Push Config Server Docker Image
