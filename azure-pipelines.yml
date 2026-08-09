@@ -12,10 +12,10 @@ variables:
   aksCluster: 'ecommerce-aks'
 
 steps:
-  - task: UseJavaVersion@1
-    inputs:
-      versionSpec: '17'
-      architecture: 'x64'
+#  - task: UseJavaVersion@1
+#    inputs:
+#      versionSpec: '17'
+#      architecture: 'x64'
 
   - task: Maven@3
     displayName: Build Config Server
