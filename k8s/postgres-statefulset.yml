@@ -29,8 +29,12 @@ spec:
               value: /var/lib/postgresql/data/pgdata
           volumeMounts:
             - name: postgres-storage
-              mountPath: /var/lib/postgresql/data/pgdata
-      volumes:
-        - name: postgres-storage
-          persistentVolumeClaim:
-            claimName: postgres-pvc
+              mountPath: /var/lib/postgresql/data
+  volumeClaimTemplates:
+    - metadata:
+        name: postgres-storage
+      spec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: 5Gi
