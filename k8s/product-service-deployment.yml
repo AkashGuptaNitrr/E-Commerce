@@ -21,16 +21,16 @@ spec:
             - name: SPRING_CONFIG_IMPORT
               value: optional:configserver:http://config-server:8888
 ---
-apiVersion: v1
-kind: Service
-metadata:
-  name: product-service
-spec:
-  selector:
-    app: product-service
-  ports:
-    - port: 8081
-      targetPort: 8081
+#apiVersion: v1
+#kind: Service
+#metadata:
+#  name: product-service
+#spec:
+#  selector:
+#    app: product-service
+#  ports:
+#    - port: 8081
+#      targetPort: 8081
 
 #-- Below is for releasing External Ip so that we can hit apis from outside
 #apiVersion: v1
